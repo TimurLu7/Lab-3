@@ -1,18 +1,8 @@
 ﻿#include <windows.h>
 #include <iostream>
 #include <vector>
+#include "MarkerArgs.h"
 using namespace std;
-
-struct MarkerArgs {
-    int* array;                   
-    int size;                     
-    CRITICAL_SECTION* cs;         
-    HANDLE startEvent;            
-    HANDLE cantContinueEvent;    
-    HANDLE resumeEvent;           
-    HANDLE terminateEvent;        
-    int num;                     
-};
 
 DWORD WINAPI MarkerFunk(LPVOID lpParam)
 {
@@ -154,7 +144,7 @@ int main()
         --remaining;
 
         EnterCriticalSection(&cs);
-        cout << "После завершения " << term;
+        cout << "После завершения " << term<<": ";
         for (int a : array) 
             cout << a << ' ';
         cout << endl;
